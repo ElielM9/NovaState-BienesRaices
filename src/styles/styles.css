@@ -1,0 +1,414 @@
+:root {
+    --grisOscuro: #2d3142;
+    --blanco: #fff;
+    --grisClaro: #bfc0c0;
+    --gris: #4f5d75;
+    --salmon: #EF8354;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+
+body {
+    font-size: 1.6rem;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin: 0 0 2rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+    color: var(--salmon);
+
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+p {
+    font-size: 1.8rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+}
+
+.container {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 15rem;
+    padding: 1.5rem;
+    margin: 0 auto;
+    color: var(--blanco);
+    background-color: var(--salmon);
+    border-radius: 1rem;
+    transition: .2s ease-in-out;
+}
+
+
+.btn:hover {
+    color: var(--salmon);
+    background-color: var(--blanco);
+    border-radius: 1rem;
+}
+
+.overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--blanco);
+    background-color: rgba(0, 0, 0, .6);
+    width: 100%;
+    height: 100%;
+}
+
+.overlay--circle {
+    border-radius: 50%;
+}
+
+.header {
+    background-color: var(--grisOscuro);
+}
+
+/* NAVEGACION */
+.nav {
+    padding: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--blanco);
+}
+
+.logo .bx {
+    font-size: 3rem;
+    padding: 2rem;
+    border: 4px solid var(--blanco);
+    border-radius: 50%;
+}
+
+.logo h1 {
+    color: var(--blanco);
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: lighter;
+    color: var(--grisClaro);
+}
+
+
+
+.link {
+    display: block;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 2.4rem;
+    color: var(--blanco);
+    border-top: 2px solid var(--blanco);
+    transition: .2s ease-in-out;
+}
+
+.link:hover {
+    color: var(--grisClaro);
+}
+
+/* HERO */
+.hero {
+    background-image: url(../assets/img/hero.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 60rem;
+}
+
+.hero__content h2 {
+    color: var(--blanco);
+}
+
+.hero__content p {
+    margin-bottom: 5rem;
+}
+
+/* NOSOTROS */
+
+.nosotros__title {
+    margin-top: 3rem;
+    color: var(--salmon);
+    font-size: 3.5rem;
+}
+
+.nosotros__copy {
+    margin: 2rem 0;
+    text-align: center;
+    color: var(--grisOscuro);
+}
+
+/* BENEFICIOS */
+.beneficios {
+    display: grid;
+    gap: 2rem;
+    padding: 4rem;
+    color: var(--blanco);
+}
+
+.beneficio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 20rem;
+    height: 20rem;
+    margin: 2rem auto;
+    background-image: url(../assets/img/beneficio.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.beneficio h3 {
+    color: var(--blanco);
+}
+
+/* PROYECTOS */
+.proyectos {
+    color: var(--grisOscuro);
+    background-color: var(--grisClaro);
+}
+
+.proyectos__title {
+    padding-top: 3rem;
+    color: var(--grisOscuro);
+}
+
+.cards {
+    display: grid;
+    gap: 2rem;
+
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95%;
+    max-width: 35rem;
+    margin: 1rem auto;
+    margin-bottom: 5rem;
+    padding: 2rem;
+    background-color: var(--grisOscuro);
+    overflow: hidden;
+    border-radius: 1rem;
+    -webkit-box-shadow: 4px 10px 5px 0px rgba(46, 74, 117, 0.54);
+    -moz-box-shadow: 4px 10px 5px 0px rgba(46, 74, 117, 0.54);
+    box-shadow: 4px 10px 5px 0px rgba(46, 74, 117, 0.54);
+}
+
+.img {
+    display: inline-block;
+    height: 20rem;
+    width: 31rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+}
+
+.card__text {
+    text-align: center;
+    color: var(--blanco);
+    padding: 2rem;
+}
+
+.name {
+    font-weight: bold;
+    margin-top: 1rem;
+    color: var(--grisClaro);
+}
+
+
+.linea {
+    width: 100%;
+    border: 2px solid white;
+    margin: 2rem auto;
+}
+
+.parrafo {
+    margin: 0 0 2rem;
+}
+
+.btn-card {
+    width: 100%;
+}
+
+/* OPINIONES */
+.personas {
+    margin-top: 3rem;
+}
+
+.person__cards {
+    display: grid;
+    gap: 1rem;
+}
+
+.card--person {
+    background-color: unset;
+    box-shadow: unset;
+}
+
+.card--person .img {
+    width: 16rem;
+    height: 16rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card--person .name {
+    color: var(--grisOscuro);
+}
+
+
+/* FOOTER */
+.footer {
+    background-color: var(--grisOscuro);
+}
+
+.nav__links--social {
+    display: flex;
+    justify-content: center;
+   
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer .bx {
+    padding: 1rem;
+    color: var(--blanco);
+    font-size: 4rem;
+    border: 3px solid var(--blanco);
+    border-radius: 50%;
+}
+
+.footer__text {
+
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: var(--blanco);
+    background-color: var(--gris);
+}
+
+@media(min-width: 556px) {
+    /* NAVEGACION */
+    .nav__links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    /* BENEFICIOS */
+    .beneficios {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* PROYECTOS */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* PERSONAS */
+    .person__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media(min-width: 768px) {
+    .nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo h1 {
+        margin: 0;
+    }
+
+
+
+    .link {
+        border: none;
+    }
+
+    /* BENEFICIOS */
+    .beneficios {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* PROYECTOS */
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* FOOTER */
+    .nav__links--social {
+        margin-bottom: 0;
+    }
+}
