@@ -36,9 +36,9 @@ h1 {
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--salmon);
-
+    padding-top: 3rem;
 }
 
 h3 {
@@ -72,6 +72,7 @@ img {
 .nomargin {
     margin: 0;
 }
+
 
 .btn {
     display: inline-block;
@@ -181,12 +182,6 @@ img {
 
 /* NOSOTROS */
 
-.nosotros__title {
-    margin-top: 3rem;
-    color: var(--salmon);
-    font-size: 3.5rem;
-}
-
 .nosotros__copy {
     margin: 2rem 0;
     text-align: center;
@@ -226,7 +221,6 @@ img {
 }
 
 .proyectos__title {
-    padding-top: 3rem;
     color: var(--grisOscuro);
 }
 
@@ -288,9 +282,6 @@ img {
 }
 
 /* OPINIONES */
-.personas {
-    margin-top: 3rem;
-}
 
 .person__cards {
     display: grid;
