@@ -196,10 +196,6 @@ img {
 }
 
 .beneficio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
     width: 20rem;
     height: 20rem;
     margin: 2rem auto;
@@ -207,10 +203,6 @@ img {
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-}
-
-.beneficio h3 {
-    color: var(--blanco);
 }
 
 /* PROYECTOS */
