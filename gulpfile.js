@@ -126,4 +126,4 @@ exports.clean = cleanCSS;
 exports.img = img;
 exports.vWebp = vWebp;
 exports.vAvif = vAvif;
-exports.dev = parallel(clean, img, vWebp, vAvif, dev);
+exports.dev = parallel(clean, img, vWebp, vAvif, dev); 
