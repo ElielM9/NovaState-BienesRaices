@@ -44,6 +44,7 @@ h2 {
 h3 {
     font-size: 2.8rem;
 }
+
 p {
     font-size: 2rem;
 }
@@ -58,8 +59,9 @@ ul {
 }
 
 img {
+    display: block;
     max-width: 100%;
-    width: 100%;
+    height: auto;
 }
 
 .container {
@@ -119,6 +121,8 @@ img {
 .nav {
     padding: 1.5rem;
 }
+
+
 
 .logo {
     display: flex;
@@ -239,7 +243,7 @@ img {
 .img {
     display: inline-block;
     height: 20rem;
-    width: 31rem;
+  
     object-fit: cover;
     object-position: center;
     border-radius: 1rem;
@@ -305,7 +309,8 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .footer .bx {
@@ -331,7 +336,6 @@ img {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
     }
 
     .hero {

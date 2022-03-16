@@ -55,7 +55,6 @@ function css(done) {
     .pipe(sourcemaps.write(`.`))
     .pipe(dest(`public/styles`)); //Almacenar en el disco duro
 
-  
   done();
 }
 
@@ -126,4 +125,4 @@ exports.clean = cleanCSS;
 exports.img = img;
 exports.vWebp = vWebp;
 exports.vAvif = vAvif;
-exports.dev = parallel(clean, img, vWebp, vAvif, dev); 
+exports.dev = parallel(img, vWebp, vAvif, dev);
