@@ -11,7 +11,6 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 *,
@@ -115,34 +114,45 @@ img {
 
 .header {
   background-color: var(--grisOscuro);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 /* NAVEGACION */
 .header__barra {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: wrap;
+  /* height: 7.5rem; */
   padding: 1.5rem;
 }
 
 .logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   color: var(--blanco);
 }
 
 @media (min-width: 992px) {
   .logo {
-    flex-direction: row;
     justify-content: center;
     gap: 1rem;
   }
 }
 
 .logo__icono {
+  display: none;
   font-size: 2.5rem;
-  padding: 2rem;
+  padding: 1rem;
   border: 4px solid var(--blanco);
   border-radius: 50%;
 }
+
+@media(min-width: 768px) {
+    .logo__icono{
+      display: block;
+    }
+ }
 
 .logo__titulo {
   color: var(--blanco);
@@ -155,11 +165,47 @@ img {
   color: var(--grisClaro);
 }
 
+.hamburguer span {
+  display: block;
+  width: 4rem;
+  height: 1rem;
+  border: 3px solid var(--grisOscuro);
+  background-color: var(--blanco);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hamburguer {
+    display: none;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center center;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: 0.3s all ease-in-out;
+}
+
+.nav--activo {
+  height: 25vh;
+  overflow: visible;
+  pointer-events: auto;
+}
+
 @media (min-width: 768px) {
   .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+    overflow: visible;
+    pointer-events: auto;
   }
 }
 
@@ -167,9 +213,13 @@ img {
   display: block;
   text-align: center;
   padding: 1rem;
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: var(--blanco);
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease;
+}
+
+.nav__link:active{
+  background-color: var(--salmon);
 }
 
 @media (hover: hover) {
@@ -359,6 +409,8 @@ img {
 }
 
 .logo--footer {
+  flex-flow: column;
+  align-items: center;
   order: 2;
 }
 
@@ -366,6 +418,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: auto;
   order: 1;
   gap: 2rem;
 }
