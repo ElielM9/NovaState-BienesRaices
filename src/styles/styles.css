@@ -84,8 +84,9 @@ img {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 1.5rem;
+  padding: 1.5rem 3.5rem;
   margin: 0 auto;
+  width: 100%;
   color: var(--blanco);
   background-color: var(--salmon);
   border-radius: 1rem;
@@ -102,6 +103,7 @@ img {
   [class$="__btn"]:hover {
     color: var(--salmon);
     background-color: var(--blanco);
+    cursor: pointer;
     border-radius: 1rem;
   }
 }
@@ -214,7 +216,7 @@ img {
   font-size: 2rem;
   color: var(--blanco);
   transition: background-color 0.3s ease;
-} 
+}
 
 .nav__link:active {
   background-color: var(--salmon);
@@ -232,22 +234,40 @@ img {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 60rem;
+  height: 70rem;
 }
 
 @media (min-width: 768px) {
   .hero {
     background-attachment: fixed;
+    height: 60rem;
   }
 }
 
-.hero__contenido {
-  display: flex;
-  flex-direction: column;
+.hero__contenedor {
+  display: grid;
   align-items: center;
-  justify-content: center;
+  height: 85%;
+}
+
+@media (min-width: 768px) {
+  .hero__contenedor {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hero__textos {
+
+  padding-top: 5rem;
   color: var(--blanco);
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero__textos {
+    padding-top: 0;
+    text-align: left;
+  }
 }
 
 .hero__titulo {
@@ -255,8 +275,62 @@ img {
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .hero__titulo {
+    text-align: left;
+  }
+}
+
 .hero__parrafo {
   margin: 0 0 3rem;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  row-gap: 1rem;
+  background-color: var(--grisOscuro);
+  padding: 3rem;
+  border-radius: 1rem;
+}
+
+.form__titulo {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .form__titulo {
+    text-align: left;
+  }
+}
+
+.form__campo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form__field {
+  width: 100%;
+  padding: 0 1rem;
+  height: 4.5rem;
+  background-color: var(--blanco);
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+.form__field:focus {
+  border-color: var(--salmon);
+}
+
+.form__field--error {
+  border-color: red;
+}
+
+.form__field--error:focus {
+  border-color: red;
 }
 
 /* NOSOTROS */
