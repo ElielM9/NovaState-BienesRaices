@@ -257,7 +257,6 @@ img {
 }
 
 .hero__textos {
-
   padding-top: 5rem;
   color: var(--blanco);
   text-align: center;
@@ -326,12 +325,52 @@ img {
 }
 
 .form__field--error {
+  color: red;
   border-color: red;
 }
 
 .form__field--error:focus {
+  color: red;
   border-color: red;
 }
+
+.form__error {
+  font-size: 1.6rem;
+  background-color: red;
+  color: var(--blanco);
+  padding: 1rem;
+  margin: 0 1rem;
+  border-radius: 1rem;
+}
+
+.form__btn:disabled {
+  background-color: var(--salmon);
+  color: var(--blanco);
+  opacity: 0.5;
+  cursor: default;
+}
+
+.form__spinner {
+  display: none;
+}
+
+.form__spinner--activo {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.form__exito{
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--blanco);
+  background-color: green;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
 
 /* NOSOTROS */
 .nosotros {
