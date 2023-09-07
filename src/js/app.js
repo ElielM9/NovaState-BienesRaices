@@ -103,10 +103,9 @@ function showAlert(mensaje, referencia) {
   cleanAlert(referencia);
 
   // Generar las alertas
-  const errorBorde = referencia.querySelector(`.form__field`);
   const error = referencia.querySelector(`.form__field`);
 
-  errorBorde.classList.add(`form__field--error`);
+  error.classList.add(`form__field--error`);
   error.placeholder = mensaje;
 }
 
@@ -116,12 +115,12 @@ function cleanAlert(referencia) {
 
   if (alerta) {
     alerta.classList.remove(`form__field--error`);
+    alerta.placeholder = `Ingresa tu ${alerta.name}`;
   }
 }
 
 function validarEmail(email) {
   const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
   const resultadoEmail = regexEmail.test(email);
 
   return resultadoEmail;
