@@ -39,7 +39,6 @@ h1 {
 
 h2 {
   font-size: 3.5rem;
-  color: var(--salmon);
 }
 
 h3 {
@@ -48,6 +47,7 @@ h3 {
 
 p {
   font-size: 2rem;
+  margin: 1rem 0;
 }
 
 a {
@@ -77,6 +77,12 @@ img {
     justify-content: space-between;
     align-items: center;
   }
+}
+
+[class$="__titulo"]{
+  font-weight: bold;
+  text-align: center;
+  color: var(--salmon);
 }
 
 [class$="__btn"] {
@@ -158,7 +164,6 @@ img {
 
 .logo__titulo {
   color: var(--blanco);
-  font-weight: bold;
   margin: 0;
 }
 
@@ -371,6 +376,52 @@ img {
   border-radius: 1rem;
 }
 
+/* ICONOS BENEFICIOS */
+.beneficios{
+
+}
+
+.beneficios__contenedor {
+  display: flex;
+  flex-direction: column;
+  padding: var(--separacion) 0;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .beneficios__contenedor {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.beneficio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: calc(var(--separacion) / 2); */
+  text-align: center;
+}
+
+.beneficio:last-of-type {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .beneficio {
+    margin: 0;
+  }
+}
+
+.beneficio__icono {
+  width: 5rem;
+}
+
+.beneficio__titulo {
+  text-transform: uppercase;
+  margin: calc(var(--separacion) / 2) 0 0;
+}
+
 
 /* NOSOTROS */
 .nosotros {
@@ -410,10 +461,6 @@ img {
   text-align: left;
   color: var(--grisOscuro);
   margin: 0;
-}
-
-.nosotros__parrafo {
-  margin: 1rem 0;
 }
 
 /* PROYECTOS */
@@ -457,7 +504,6 @@ img {
 }
 
 .card__titulo {
-  font-weight: bold;
   text-align: left;
   color: var(--grisClaro);
   margin: 1rem 0;

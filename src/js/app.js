@@ -40,12 +40,11 @@ function openCloseNav() {
 }
 
 function closeNav(nav) {
-  const links = document.querySelectorAll(`.nav__link`);
+  const navLinks = document.querySelectorAll(`.nav__link`);
 
-  links.forEach((link) => {
-    link.addEventListener(`click`, (e) => {
+  navLinks.forEach((eachLink, index) => {
+    eachLink.addEventListener(`click`, (e) => {
       e.preventDefault();
-
       // Scroll al dar click en enlace
       const section = document.querySelector(e.target.attributes.href.value);
       section.scrollIntoView({ behavior: `smooth` });
@@ -56,6 +55,21 @@ function closeNav(nav) {
         nav.classList.remove(`nav--activo`);
       }
     });
+  });
+
+  // Escuchar el evento `click` en la ventana window del navegador
+  window.addEventListener("click", (e) => {
+    // Obtener el elemento padre del elemento en el que se hizo clic.
+    const referencia = e.target.parentElement;
+
+    /* Verificar tres condiciones antes de ejecutar el código dentro del if:
+     1. Comprobar si el elemento nav tiene la clase 'nav--activo'.
+     2. Comprobar si el elemento padre del elemento en el que se hizo clic no es igual al elemento con la clase 'hamburguer'.
+    Si todas las condiciones se cumplen, alternar la presencia de la clase 'nav--activo' en el elemento 'nav'.
+    */
+    if (nav.classList.contains(`nav--activo`) && referencia !== hamburguer) {
+      nav.classList.remove(`nav--activo`);
+    }
   });
 }
 
