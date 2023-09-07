@@ -66,6 +66,8 @@ function validar(e) {
   // Alerta si un field está vacio
   if (e.target.value.trim() === vacio) {
     showAlert(`El ${e.target.name} es obligatorio`, referencia);
+    email[e.target.name] = ``;
+    comprobarEmail();
 
     return;
   }
@@ -73,6 +75,8 @@ function validar(e) {
   // Validar el email
   if (e.target.name === `email` && !validarEmail(e.target.value)) {
     showAlert(`El email es inválido`, referencia);
+    email[e.target.name] = ``;
+    comprobarEmail();
 
     return;
   }
@@ -80,6 +84,8 @@ function validar(e) {
   // Validar el telefono
   if (e.target.name === `telefono` && !validarTel(e.target.value)) {
     showAlert(`El teléfono es inválido`, referencia);
+    email[e.target.name] = ``;
+    comprobarEmail();
 
     return;
   }
@@ -172,7 +178,7 @@ function resetForm() {
   // Reiniciar el objeto
   email.nombre = ``;
   email.email = ``;
-  email.mensaje = ``;
+  email.telefono = ``;
 
   form.reset();
 
