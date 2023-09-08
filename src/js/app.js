@@ -39,6 +39,10 @@ function eventListeners() {
 
 // Funciones
 
+/**
+ * La función `openCloseNav` activa la clase `nav--activo` en el elemento `nav` y
+  llama a la función `closeNavOnClick` pasando el elemento `nav` como argumento.
+ */
 function openCloseNav() {
   const nav = document.querySelector(`.nav`);
 
@@ -47,6 +51,11 @@ function openCloseNav() {
   closeNavOnClick(nav);
 }
 
+/**
+ * la función `closeNavOnClick` se usa para cerrar la navegación cuando se le da click a un link o cuando
+ * ocurre un click fuera del menú.
+ * @param nav - El parámetro `nav` es una referencia al elemento de nav en el documento HTML
+ */
 function closeNavOnClick(nav) {
   const navLinks = document.querySelectorAll(`.nav__link`);
 
@@ -81,6 +90,13 @@ function closeNavOnClick(nav) {
   });
 }
 
+/**
+ * La función `validate` se usa para validar los campos de entrada del formulario, incluyendo la comprobación de campos vacíos,
+ * validar direcciones de correo electrónico, y validar números de teléfono.
+ * @param e - El parámetro `e` es un objeto evento que se pasa a la función `validate`.
+ * Representa el evento que activa la función, como un clic en un botón o el envío de un formulario.
+ * @returns nada.
+ */
 function validar(e) {
   const empty = ``;
   const input = e.target;
@@ -134,6 +150,12 @@ function validar(e) {
   checkEmailNewsletter();
 }
 
+/**
+ * La función `showAlert` muestra un mensaje de error en un elemento de referencia especifico.
+ * @param mensaje - El parámetro "mensaje" es un string que representa el mensaje de error que se mostrará en la alerta.
+ * @param reference - El parámetro `reference` es la referencia del elemento donde se mostrará la alerta
+ * Se espera que sea un elemento DOM.
+ */
 function showAlert(mensaje, reference) {
   cleanAlert(reference);
 
@@ -144,6 +166,11 @@ function showAlert(mensaje, reference) {
   error.placeholder = mensaje;
 }
 
+/**
+ * la función cleanAlert elimina la clase de error de un campo de formulario y reinicia el texto del placeholder.
+ * @param reference - El parámetro `reference` es el elemento que contiene la alerta. Se utiliza para
+ * encontrar el elemento de alerta dentro de los hijos.
+ */
 function cleanAlert(reference) {
   // Comprobar si existe la alerta
   const isActiveAlert = reference.querySelector(`.form__field--error`);
@@ -154,6 +181,11 @@ function cleanAlert(reference) {
   }
 }
 
+/**
+ * La función `isValidEmail` revisa si el email recibido es válido de acuerdo a una expresión regular.
+ * @param email - El parámetro `email` es un string que representa una dirección de correo electrónico.
+ * @returns - Un valor booleano que indica si el correo electrónico recibido es válido o no.
+ */
 function isValidEmail(email) {
   const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   const resultEmail = regexEmail.test(email);
@@ -161,6 +193,11 @@ function isValidEmail(email) {
   return resultEmail;
 }
 
+/**
+ * La función `isValidTel` revisa si el teléfono recibido es válido de acuerdo a una expresión regular.
+ * @param tel - El parámetro `tel` es un string que representa un número de teléfono.
+ * @returns - Un valor booleano que indica si el teléfono recibido es válido o no.
+ */
 function isValidTel(tel) {
   const regexTel = /^(\+52|0052|52)?[ -]*[ -]*([0-9][ -]*){10}/;
   const resultTel = regexTel.test(tel);
@@ -168,6 +205,16 @@ function isValidTel(tel) {
   return resultTel;
 }
 
+/**
+ * La función `fillObjects` rellena los objetos `email` y `emailNewsletter` basándose en el elemento padre
+ * de la referencia dada.
+ * @param reference - El parámetro reference es el elemento que disparó el evento o el elemento
+ * que quieres usar como referencia para determinar qué objeto rellenar.
+ * @param fieldName - El nombre del campo que se está rellenando en los objetos. Por ejemplo, si el
+ * campo es para la dirección de correo electrónico, el fieldName sería "email".
+ * @param fieldValue - El parámetro `fieldValue` es el valor que debe asignarse al campo especificado en los objetos 
+ * Email` y `EmailNewsletter`.
+ */
 function fillObjects(reference, fieldName, fieldValue) {
   // Llenar los objetos `Email` y `EmailNewsletter`
   if (reference.parentElement === formHeader) {
@@ -179,6 +226,10 @@ function fillObjects(reference, fieldName, fieldValue) {
   }
 }
 
+/**
+ * La función comprueba si algún valor del objeto email está vacío y desactiva el botón de envío si es así.
+ * @return Nada.
+ */
 function checkEmail() {
   const btnSubmit = document.querySelector(`#btnSubmit`);
 
@@ -191,6 +242,11 @@ function checkEmail() {
   btnSubmit.disabled = false;
 }
 
+/**
+ * La función comprueba si algún valor del objeto emailNewsletter está vacío y desactiva el botón
+ * btnSubscribe si es así.
+ * @return Nada.
+ */
 function checkEmailNewsletter() {
   const btnSubscribe = document.querySelector(`#btnSubscribe`);
 
@@ -202,6 +258,15 @@ function checkEmailNewsletter() {
   btnSubscribe.disabled = false;
 }
 
+
+/**
+ * La función `sendEmail` es una función javascript que maneja los envíos de formularios, muestra un
+ * Spinner, reinicia el formulario, y muestra un mensaje de éxito después de un cierto retraso.
+ * @param e - El parámetro `e` es un objeto de evento que se pasa a la función `sendEmail`.
+ * Normalmente se desencadena por un receptor de eventos, como el envío de un formulario o la pulsación de un botón. El objeto
+ * contiene información sobre el evento que se ha producido, como el elemento de destino que desencadenó el evento..
+ * @returns Nada.
+ */
 function sendEmail(e) {
   e.preventDefault();
 
@@ -267,6 +332,13 @@ function sendEmail(e) {
   }
 }
 
+/**
+ * La funcion`resetForm` reinicia los valores de los input en dos formularios diferentes y comprueba la
+ validez de las direcciones de correo electrónico. 
+ * @param input - El parámetro input se usa para determinar qué formulario reiniciar. Puede ser
+ * formHeader o formNewsletter.
+ * @returns nada.
+ */
 function resetForm(input) {
   if (input === formHeader) {
     // Reiniciar objetos
