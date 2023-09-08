@@ -28,8 +28,6 @@ body {
 h1,
 h2,
 h3 {
-  margin: calc(var(--separacion) / 2) 0;
-  margin-top: 0;
   text-align: center;
 }
 
@@ -47,7 +45,7 @@ h3 {
 
 p {
   font-size: 2rem;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 a {
@@ -79,10 +77,11 @@ img {
   }
 }
 
-[class$="__titulo"]{
+[class$="__titulo"] {
   font-weight: bold;
   text-align: center;
   color: var(--salmon);
+  margin: 0 0 calc(var(--separacion) / 2);
 }
 
 [class$="__btn"] {
@@ -95,6 +94,7 @@ img {
   width: 100%;
   color: var(--blanco);
   background-color: var(--salmon);
+  border: 2px solid transparent;
   border-radius: 1rem;
   transition: background-color 0.2s;
 }
@@ -365,7 +365,7 @@ img {
   margin-top: 1rem;
 }
 
-.form__exito{
+.form__exito {
   font-size: 1.6rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -377,8 +377,7 @@ img {
 }
 
 /* ICONOS BENEFICIOS */
-.beneficios{
-
+.beneficios {
 }
 
 .beneficios__contenedor {
@@ -419,9 +418,8 @@ img {
 
 .beneficio__titulo {
   text-transform: uppercase;
-  margin: calc(var(--separacion) / 2) 0 0;
+  margin: 1rem 0;
 }
-
 
 /* NOSOTROS */
 .nosotros {
@@ -552,11 +550,101 @@ img {
   color: var(--grisOscuro);
 }
 
+/* NEWSLETTER */
+.newsletter {
+  background-image: linear-gradient(
+      to bottom,
+      transparent 50%,
+      var(--blanco) 0%
+    ),
+    url(../assets/img/soyeon.jpg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100%, 50rem;
+}
+
+@media (min-width: 768px) {
+  .newsletter {
+    background-image: linear-gradient(
+        to right,
+        transparent 50%,
+        var(--blanco) 0%
+      ),
+      url(../assets/img/soyeon.jpg);
+    background-position: right, -15rem 1rem;
+    background-size: 100%, 70rem;
+    padding: 10rem 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .newsletter {
+    background-position: center, 0rem -20rem;
+    background-size: 100%, 90rem;
+  
+  }
+}
+
+.newsletter__contenido {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--separacion);
+}
+
+@media (min-width: 768px) {
+  .newsletter__contenido {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: unset;
+  }
+}
+
+.newsletter__texto {
+  grid-row: 2 / 3;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .newsletter__texto {
+    grid-column: 2 / 3;
+    grid-row: unset;
+  }
+}
+
+.newsletter__titulo {
+  text-align: left;
+  margin: 1rem 0;
+}
+
+.form--newsletter {
+  padding: 0;
+  background-color: var(--blanco);
+}
+
+.form__field--newsletter{
+  border: none;
+}
+
+.form__btn--newsletter:active {
+  border: 2px solid var(--salmon);
+}
+
+@media (hover: hover) {
+  .form__btn--newsletter:hover {
+    border: 2px solid var(--salmon);
+  }
+}
+
 /* FOOTER */
 .footer {
+  margin-top: 2rem;
   background-color: var(--grisOscuro);
 }
 
+@media (min-width: 768px) {
+  .footer {
+    margin-top: 0;
+  }
+}
 .footer__contenedor {
   padding: 3rem 0;
 }
