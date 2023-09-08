@@ -571,7 +571,7 @@ img {
         var(--blanco) 0%
       ),
       url(../assets/img/soyeon.jpg);
-    background-position: right, -15rem 1rem;
+    background-position: right, -15rem 0rem;
     background-size: 100%, 70rem;
     padding: 10rem 0;
   }

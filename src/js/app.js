@@ -18,7 +18,7 @@ const inputName = document.querySelector(`#name`);
 const inputEmail = document.querySelector(`#email`);
 const inputTel = document.querySelector(`#tel`);
 const formNewsletter = document.querySelector(`#formNewsletter`);
-const inputEmailNews = document.querySelector(`#emailNews`);
+const inputEmailNewsletter = document.querySelector(`#emailNews`);
 
 // Eventos
 
@@ -32,7 +32,7 @@ function eventListeners() {
   inputName.addEventListener(`input`, validar);
   inputEmail.addEventListener(`input`, validar);
   inputTel.addEventListener(`input`, validar);
-  inputEmailNews.addEventListener(`input`, validar);
+  inputEmailNewsletter.addEventListener(`input`, validar);
   formHeader.addEventListener(`submit`, sendEmail);
   formNewsletter.addEventListener(`submit`, sendEmail);
 }
@@ -85,6 +85,7 @@ function validar(e) {
   const empty = ``;
   const input = e.target;
   const reference = input.parentElement;
+  const fieldId = input.id;
   const fieldName = input.name;
   const fieldValue = input.value.trim().toLowerCase();
 
@@ -117,7 +118,6 @@ function validar(e) {
 
   if (fieldName === `emailNews` && !isValidEmail(fieldValue)) {
     showAlert(`El email es invalido`, reference);
-    delete email.emailNews;
     emailNewsletter[fieldName] = ``;
     checkEmailNewsletter();
 
@@ -127,13 +127,7 @@ function validar(e) {
   cleanAlert(reference);
 
   // Llenar los objetos `Email` y `EmailNewsletter`
-  if (reference.parentElement === formHeader) {
-    email[fieldName] = fieldValue;
-  }
-
-  if (reference.parentElement === formNewsletter) {
-    emailNewsletter[fieldName] = fieldValue;
-  }
+  fillObjects(reference, fieldName, fieldValue);
 
   // Revisar los objetos `Email` y `EmailNewsletter`
   checkEmail();
@@ -172,6 +166,18 @@ function isValidTel(tel) {
   const resultTel = regexTel.test(tel);
 
   return resultTel;
+}
+
+function fillObjects(reference, fieldName, fieldValue) {
+
+  // Llenar los objetos `Email` y `EmailNewsletter`
+  if (reference.parentElement === formHeader) {
+    email[fieldName] = fieldValue;
+  }
+
+  if (reference.parentElement === formNewsletter) {
+    emailNewsletter[fieldName] = fieldValue;
+  }
 }
 
 function checkEmail() {
