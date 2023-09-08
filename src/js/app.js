@@ -9,10 +9,16 @@ const email = {
   telefono: ``,
 };
 
-const form = document.querySelector(`#form`);
+const emailNews = {
+  email: ``,
+};
+
+const formHeader = document.querySelector(`#formHeader`);
 const inputName = document.querySelector(`#name`);
 const inputEmail = document.querySelector(`#email`);
 const inputTel = document.querySelector(`#tel`);
+const formNewsletter = document.querySelector(`#formNewsletter`);
+const inputEmailNews = document.querySelector(`#emailNews`);
 
 // Eventos
 
@@ -26,7 +32,9 @@ function eventListeners() {
   inputName.addEventListener(`input`, validar);
   inputEmail.addEventListener(`input`, validar);
   inputTel.addEventListener(`input`, validar);
-  form.addEventListener(`submit`, sendEmail);
+  inputEmailNews.addEventListener(`input`, validar);
+  formHeader.addEventListener(`submit`, sendEmail);
+  formNewsletter.addEventListener(`submit`, sendEmail);
 }
 
 // Funciones
@@ -78,7 +86,7 @@ function validar(e) {
   const referencia = e.target.parentElement;
 
   // Alerta si un field está vacio
-  if (e.target.value.trim() === vacio) {
+  if (e.target.value.trim() === vacio && e.target.id !== `emailNews`) {
     showAlert(`El ${e.target.name} es obligatorio`, referencia);
     email[e.target.name] = ``;
     comprobarEmail();
@@ -104,13 +112,25 @@ function validar(e) {
     return;
   }
 
+  if (e.target.id === `emailNews` && !validarEmail(e.target.value)) {
+    showAlert(`El email es invalido`, referencia);
+    emailNews[e.target.name] = ``;
+    comprobarEmailNews();
+
+    return;
+  }
+
   cleanAlert(referencia);
 
   // Llenar el objeto email
   email[e.target.name] = e.target.value.trim().toLowerCase();
 
+  // Llenar el email news
+  emailNews[e.target.name] = e.target.value.trim().toLowerCase();
+
   // Revisar el objeto email
   comprobarEmail();
+  comprobarEmailNews();
 }
 
 function showAlert(mensaje, referencia) {
@@ -159,32 +179,77 @@ function comprobarEmail() {
   btnSubmit.disabled = false;
 }
 
+function comprobarEmailNews() {
+  const btnSubscribe = document.querySelector(`#btnSubscribe`);
+
+  if (Object.values(emailNews).includes(``)) {
+    btnSubscribe.disabled = true;
+
+    return;
+  }
+  btnSubscribe.disabled = false;
+}
+
 function sendEmail(e) {
   e.preventDefault();
 
-  const spinner = document.querySelector(`#spinner`);
+  if (e.target.id === `formNewsletter`) {
+    const spinnerNews = document.querySelector(`#spinnerNews`);
 
-  spinner.classList.add(`form__spinner--activo`);
-  spinner.classList.remove(`form__spinner`);
+    spinnerNews.classList.add(`form__spinner--activo`);
+    spinnerNews.classList.remove(`form__spinner`);
 
-  setTimeout(() => {
-    spinner.classList.remove(`form__spinner--activo`);
-    spinner.classList.add(`form__spinner`);
-
-    // Reiniciar el formulario
-    resetForm();
-
-    // Crear alerta de exito
-    const alertaExito = document.createElement(`P`);
-    alertaExito.classList.add(`form__exito`);
-    alertaExito.textContent = "Mensaje envíado exitosamente";
-    form.appendChild(alertaExito);
-
-    // Eliminar la alerta despues de mostrarla
     setTimeout(() => {
-      alertaExito.remove();
-    }, 2000);
-  }, 3000);
+      spinnerNews.classList.remove(`form__spinner--activo`);
+      spinnerNews.classList.add(`form__spinner`);
+
+      // Reiniciar el formulario
+      resetForm();
+
+      // Crear alerta de exito
+      const alertaExito = document.createElement(`P`);
+      alertaExito.classList.add(`form__exito`);
+      alertaExito.textContent = `Gracias por suscribirte`;
+
+      formNewsletter.appendChild(alertaExito);
+
+      // Eliminar la alerta despues de mostrarla
+      setTimeout(() => {
+        alertaExito.remove();
+      }, 2000);
+    }, 3000);
+
+    return;
+  }
+
+  if (e.target.id === `formHeader`) {
+    const spinner = document.querySelector(`#spinner`);
+
+    spinner.classList.add(`form__spinner--activo`);
+    spinner.classList.remove(`form__spinner`);
+
+    setTimeout(() => {
+      spinner.classList.remove(`form__spinner--activo`);
+      spinner.classList.add(`form__spinner`);
+
+      // Reiniciar el formulario
+      resetForm();
+
+      // Crear alerta de exito
+      const alertaExito = document.createElement(`P`);
+      alertaExito.classList.add(`form__exito`);
+      alertaExito.textContent = "Mensaje envíado exitosamente";
+
+      formHeader.appendChild(alertaExito);
+
+      // Eliminar la alerta despues de mostrarla
+      setTimeout(() => {
+        alertaExito.remove();
+      }, 2000);
+    }, 3000);
+
+    return;
+  }
 }
 
 function resetForm() {
@@ -193,7 +258,11 @@ function resetForm() {
   email.email = ``;
   email.telefono = ``;
 
-  form.reset();
+  emailNews.email = ``;
+
+  formHeader.reset();
+  formNewsletter.reset();
 
   comprobarEmail();
+  comprobarEmailNews();
 }
