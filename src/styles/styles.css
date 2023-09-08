@@ -640,6 +640,11 @@ img {
   border-bottom: var(--blanco);
 }
 
+.form__exito--newsletter{
+  color: green;
+  background-color: unset;
+}
+
 /* FOOTER */
 .footer {
   margin-top: 2rem;

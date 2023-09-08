@@ -127,12 +127,13 @@ function validar(e) {
   cleanAlert(reference);
 
   // Llenar los objetos `Email` y `EmailNewsletter`
-  // Error aquí
-  email[fieldName] = fieldValue;
-  emailNewsletter[fieldName] = fieldValue;
+  if (reference.parentElement === formHeader) {
+    email[fieldName] = fieldValue;
+  }
 
-  console.log(email);
-  // console.log(emailNewsletter);
+  if (reference.parentElement === formNewsletter) {
+    emailNewsletter[fieldName] = fieldValue;
+  }
 
   // Revisar los objetos `Email` y `EmailNewsletter`
   checkEmail();
@@ -201,7 +202,7 @@ function sendEmail(e) {
 
   const input = e.target;
 
-  if (input.id === `formHeader`) {
+  if (input === formHeader) {
     const spinner = document.querySelector(`#spinner`);
 
     spinner.classList.add(`form__spinner--activo`);
@@ -230,7 +231,7 @@ function sendEmail(e) {
     return;
   }
 
-  if (input.id === `formNewsletter`) {
+  if (input === formNewsletter) {
     const spinnerNews = document.querySelector(`#spinnerNews`);
 
     spinnerNews.classList.add(`form__spinner--activo`);
@@ -246,6 +247,7 @@ function sendEmail(e) {
       // Crear alerta de exito
       const alertaExito = document.createElement(`P`);
       alertaExito.classList.add(`form__exito`);
+      alertaExito.classList.add(`form__exito--newsletter`);
       alertaExito.textContent = `Gracias por suscribirte`;
 
       formNewsletter.appendChild(alertaExito);
