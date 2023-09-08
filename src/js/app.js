@@ -9,8 +9,8 @@ const email = {
   telefono: ``,
 };
 
-const emailNews = {
-  email: ``,
+const emailNewsletter = {
+  emailNews: ``,
 };
 
 const formHeader = document.querySelector(`#formHeader`);
@@ -44,20 +44,21 @@ function openCloseNav() {
 
   nav.classList.toggle(`nav--activo`);
 
-  closeNav(nav);
+  closeNavOnClick(nav);
 }
 
-function closeNav(nav) {
+function closeNavOnClick(nav) {
   const navLinks = document.querySelectorAll(`.nav__link`);
 
   navLinks.forEach((eachLink, index) => {
     eachLink.addEventListener(`click`, (e) => {
       e.preventDefault();
-      // Scroll al dar click en enlace
+
+      // Scroll al dar click en un elemento
       const section = document.querySelector(e.target.attributes.href.value);
       section.scrollIntoView({ behavior: `smooth` });
 
-      // Cerrar el menu al dar click en enlace
+      // Cerrar el menu si se le da click a un enlace
       const anchor = `A`;
       if (e.target.tagName === anchor) {
         nav.classList.remove(`nav--activo`);
@@ -65,15 +66,14 @@ function closeNav(nav) {
     });
   });
 
-  // Escuchar el evento `click` en la ventana window del navegador
+  // Ejecuta el evento `click` en la ventana window del navegador
   window.addEventListener("click", (e) => {
     // Obtener el elemento padre del elemento en el que se hizo clic.
     const referencia = e.target.parentElement;
 
-    /* Verificar tres condiciones antes de ejecutar el código dentro del if:
-     1. Comprobar si el elemento nav tiene la clase 'nav--activo'.
-     2. Comprobar si el elemento padre del elemento en el que se hizo clic no es igual al elemento con la clase 'hamburguer'.
-    Si todas las condiciones se cumplen, alternar la presencia de la clase 'nav--activo' en el elemento 'nav'.
+    /* 1. Comprobar si el elemento nav tiene la clase 'nav--activo'.
+       2. Comprobar si el elemento padre del elemento en el que se hizo clic no es igual al elemento con la clase 'hamburguer'.
+       Si todas las condiciones se cumplen, alternar la presencia de la clase 'nav--activo' en el elemento 'nav'.
     */
     if (nav.classList.contains(`nav--activo`) && referencia !== hamburguer) {
       nav.classList.remove(`nav--activo`);
@@ -82,92 +82,98 @@ function closeNav(nav) {
 }
 
 function validar(e) {
-  const vacio = ``;
-  const referencia = e.target.parentElement;
+  const empty = ``;
+  const input = e.target;
+  const reference = input.parentElement;
+  const fieldName = input.name;
+  const fieldValue = input.value.trim().toLowerCase();
 
   // Alerta si un field está vacio
-  if (e.target.value.trim() === vacio && e.target.id !== `emailNews`) {
-    showAlert(`El ${e.target.name} es obligatorio`, referencia);
-    email[e.target.name] = ``;
-    comprobarEmail();
+  if (fieldValue === empty && fieldName !== `emailNews`) {
+    showAlert(`El ${fieldName} es obligatorio`, reference);
+    email[fieldName] = ``;
+    checkEmail();
 
     return;
   }
 
   // Validar el email
-  if (e.target.name === `email` && !validarEmail(e.target.value)) {
-    showAlert(`El email es inválido`, referencia);
-    email[e.target.name] = ``;
-    comprobarEmail();
+  if (fieldName === `email` && !isValidEmail(fieldValue)) {
+    showAlert(`El email es inválido`, reference);
+    email[fieldName] = ``;
+    checkEmail();
 
     return;
   }
 
   // Validar el telefono
-  if (e.target.name === `telefono` && !validarTel(e.target.value)) {
-    showAlert(`El teléfono es inválido`, referencia);
-    email[e.target.name] = ``;
-    comprobarEmail();
+  if (fieldName === `telefono` && !isValidTel(fieldValue)) {
+    showAlert(`El teléfono es inválido`, reference);
+    email[fieldName] = ``;
+    checkEmail();
 
     return;
   }
 
-  if (e.target.id === `emailNews` && !validarEmail(e.target.value)) {
-    showAlert(`El email es invalido`, referencia);
-    emailNews[e.target.name] = ``;
-    comprobarEmailNews();
+  if (fieldName === `emailNews` && !isValidEmail(fieldValue)) {
+    showAlert(`El email es invalido`, reference);
+    delete email.emailNews;
+    emailNewsletter[fieldName] = ``;
+    checkEmailNewsletter();
 
     return;
   }
 
-  cleanAlert(referencia);
+  cleanAlert(reference);
 
-  // Llenar el objeto email
-  email[e.target.name] = e.target.value.trim().toLowerCase();
+  // Llenar los objetos `Email` y `EmailNewsletter`
+  // Error aquí
+  email[fieldName] = fieldValue;
+  emailNewsletter[fieldName] = fieldValue;
 
-  // Llenar el email news
-  emailNews[e.target.name] = e.target.value.trim().toLowerCase();
+  console.log(email);
+  // console.log(emailNewsletter);
 
-  // Revisar el objeto email
-  comprobarEmail();
-  comprobarEmailNews();
+  // Revisar los objetos `Email` y `EmailNewsletter`
+  checkEmail();
+  checkEmailNewsletter();
 }
 
-function showAlert(mensaje, referencia) {
-  cleanAlert(referencia);
+function showAlert(mensaje, reference) {
+  cleanAlert(reference);
 
   // Generar las alertas
-  const error = referencia.querySelector(`.form__field`);
+  const error = reference.querySelector(`.form__field`);
 
   error.classList.add(`form__field--error`);
   error.placeholder = mensaje;
 }
 
-function cleanAlert(referencia) {
+function cleanAlert(reference) {
   // Comprobar si existe la alerta
-  const alerta = referencia.querySelector(`.form__field--error`);
+  const isActiveAlert = reference.querySelector(`.form__field--error`);
 
-  if (alerta) {
-    alerta.classList.remove(`form__field--error`);
-    alerta.placeholder = `Ingresa tu ${alerta.name}`;
+  if (isActiveAlert) {
+    isActiveAlert.classList.remove(`form__field--error`);
+    isActiveAlert.placeholder = `Ingresa tu ${isActiveAlert.name}`;
   }
 }
 
-function validarEmail(email) {
+function isValidEmail(email) {
   const regexEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-  const resultadoEmail = regexEmail.test(email);
+  const resultEmail = regexEmail.test(email);
 
-  return resultadoEmail;
+  return resultEmail;
 }
 
-function validarTel(tel) {
+function isValidTel(tel) {
   const regexTel = /^(\+52|0052|52)?[ -]*[ -]*([0-9][ -]*){10}/;
-  const resultadoTel = regexTel.test(tel);
+  const resultTel = regexTel.test(tel);
 
-  return resultadoTel;
+  return resultTel;
 }
 
-function comprobarEmail() {
+function checkEmail() {
   const btnSubmit = document.querySelector(`#btnSubmit`);
 
   if (Object.values(email).includes(``)) {
@@ -179,10 +185,10 @@ function comprobarEmail() {
   btnSubmit.disabled = false;
 }
 
-function comprobarEmailNews() {
+function checkEmailNewsletter() {
   const btnSubscribe = document.querySelector(`#btnSubscribe`);
 
-  if (Object.values(emailNews).includes(``)) {
+  if (Object.values(emailNewsletter).includes(``)) {
     btnSubscribe.disabled = true;
 
     return;
@@ -193,36 +199,9 @@ function comprobarEmailNews() {
 function sendEmail(e) {
   e.preventDefault();
 
-  if (e.target.id === `formNewsletter`) {
-    const spinnerNews = document.querySelector(`#spinnerNews`);
+  const input = e.target;
 
-    spinnerNews.classList.add(`form__spinner--activo`);
-    spinnerNews.classList.remove(`form__spinner`);
-
-    setTimeout(() => {
-      spinnerNews.classList.remove(`form__spinner--activo`);
-      spinnerNews.classList.add(`form__spinner`);
-
-      // Reiniciar el formulario
-      resetForm();
-
-      // Crear alerta de exito
-      const alertaExito = document.createElement(`P`);
-      alertaExito.classList.add(`form__exito`);
-      alertaExito.textContent = `Gracias por suscribirte`;
-
-      formNewsletter.appendChild(alertaExito);
-
-      // Eliminar la alerta despues de mostrarla
-      setTimeout(() => {
-        alertaExito.remove();
-      }, 2000);
-    }, 3000);
-
-    return;
-  }
-
-  if (e.target.id === `formHeader`) {
+  if (input.id === `formHeader`) {
     const spinner = document.querySelector(`#spinner`);
 
     spinner.classList.add(`form__spinner--activo`);
@@ -250,19 +229,50 @@ function sendEmail(e) {
 
     return;
   }
+
+  if (input.id === `formNewsletter`) {
+    const spinnerNews = document.querySelector(`#spinnerNews`);
+
+    spinnerNews.classList.add(`form__spinner--activo`);
+    spinnerNews.classList.remove(`form__spinner`);
+
+    setTimeout(() => {
+      spinnerNews.classList.remove(`form__spinner--activo`);
+      spinnerNews.classList.add(`form__spinner`);
+
+      // Reiniciar el formulario
+      resetForm();
+
+      // Crear alerta de exito
+      const alertaExito = document.createElement(`P`);
+      alertaExito.classList.add(`form__exito`);
+      alertaExito.textContent = `Gracias por suscribirte`;
+
+      formNewsletter.appendChild(alertaExito);
+
+      // Eliminar la alerta despues de mostrarla
+      setTimeout(() => {
+        alertaExito.remove();
+      }, 2000);
+    }, 3000);
+
+    return;
+  }
 }
 
 function resetForm() {
-  // Reiniciar el objeto
+  // Reiniciar los objetos
   email.nombre = ``;
   email.email = ``;
   email.telefono = ``;
 
-  emailNews.email = ``;
+  emailNewsletter.emailNews = ``;
 
+  // Reiniciar los formularios
   formHeader.reset();
   formNewsletter.reset();
 
-  comprobarEmail();
-  comprobarEmailNews();
+  // Comprobar el `Email` e `EmailNews`
+  checkEmail();
+  checkEmailNewsletter();
 }

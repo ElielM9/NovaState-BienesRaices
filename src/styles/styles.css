@@ -622,6 +622,7 @@ img {
 
 .form__field--newsletter{
   border: none;
+  padding: 0 .5rem;
 }
 
 .form__btn--newsletter:active {
@@ -636,7 +637,7 @@ img {
 
 .form__spinner--newsletter .loader{
   border: 5px solid var(--grisOscuro);
-  border-bottom-color: var(--grisClaro);
+  border-bottom: var(--blanco);
 }
 
 /* FOOTER */
