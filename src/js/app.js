@@ -10,7 +10,7 @@ const email = {
 };
 
 const emailNewsletter = {
-  emailNews: ``,
+  email: ``,
 };
 
 const formHeader = document.querySelector(`#formHeader`);
@@ -90,7 +90,7 @@ function validar(e) {
   const fieldValue = input.value.trim().toLowerCase();
 
   // Alerta si un field está vacio
-  if (fieldValue === empty && fieldName !== `emailNews`) {
+  if (fieldValue === empty && fieldId !== `emailNews`) {
     showAlert(`El ${fieldName} es obligatorio`, reference);
     email[fieldName] = ``;
     checkEmail();
@@ -99,7 +99,7 @@ function validar(e) {
   }
 
   // Validar el email
-  if (fieldName === `email` && !isValidEmail(fieldValue)) {
+  if (fieldId === `email` && !isValidEmail(fieldValue)) {
     showAlert(`El email es inválido`, reference);
     email[fieldName] = ``;
     checkEmail();
@@ -108,7 +108,7 @@ function validar(e) {
   }
 
   // Validar el telefono
-  if (fieldName === `telefono` && !isValidTel(fieldValue)) {
+  if (fieldId === `telefono` && !isValidTel(fieldValue)) {
     showAlert(`El teléfono es inválido`, reference);
     email[fieldName] = ``;
     checkEmail();
@@ -116,7 +116,7 @@ function validar(e) {
     return;
   }
 
-  if (fieldName === `emailNews` && !isValidEmail(fieldValue)) {
+  if (fieldId === `emailNews` && !isValidEmail(fieldValue)) {
     showAlert(`El email es invalido`, reference);
     emailNewsletter[fieldName] = ``;
     checkEmailNewsletter();
@@ -169,7 +169,6 @@ function isValidTel(tel) {
 }
 
 function fillObjects(reference, fieldName, fieldValue) {
-
   // Llenar los objetos `Email` y `EmailNewsletter`
   if (reference.parentElement === formHeader) {
     email[fieldName] = fieldValue;
@@ -219,7 +218,7 @@ function sendEmail(e) {
       spinner.classList.add(`form__spinner`);
 
       // Reiniciar el formulario
-      resetForm();
+      resetForm(input);
 
       // Crear alerta de exito
       const alertaExito = document.createElement(`P`);
@@ -248,7 +247,7 @@ function sendEmail(e) {
       spinnerNews.classList.add(`form__spinner`);
 
       // Reiniciar el formulario
-      resetForm();
+      resetForm(input);
 
       // Crear alerta de exito
       const alertaExito = document.createElement(`P`);
@@ -268,19 +267,32 @@ function sendEmail(e) {
   }
 }
 
-function resetForm() {
-  // Reiniciar los objetos
-  email.nombre = ``;
-  email.email = ``;
-  email.telefono = ``;
+function resetForm(input) {
+  if (input === formHeader) {
+    // Reiniciar objetos
+    email.nombre = ``;
+    email.email = ``;
+    email.telefono = ``;
 
-  emailNewsletter.emailNews = ``;
+    // Reiniciar los formularios
+    formHeader.reset();
 
-  // Reiniciar los formularios
-  formHeader.reset();
-  formNewsletter.reset();
+    // Revisar el objeto
+    checkEmail();
 
-  // Comprobar el `Email` e `EmailNews`
-  checkEmail();
-  checkEmailNewsletter();
+    return;
+  }
+
+  if (input === formNewsletter) {
+    // Reiniciar el objeto
+    emailNewsletter.email = ``;
+
+    // Reiniciar el formulario
+    formNewsletter.reset();
+
+    // Revisar el objeto emailnewsletter
+    checkEmailNewsletter();
+
+    return;
+  }
 }
