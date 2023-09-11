@@ -122,7 +122,7 @@ img {
 
 .header {
   background-color: var(--grisOscuro);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 /* NAVEGACION */
 .header__barra {
@@ -378,6 +378,8 @@ img {
 
 /* ICONOS BENEFICIOS */
 .beneficios {
+  background-color: var(--grisOscuro);
+  color: var(--blanco);
 }
 
 .beneficios__contenedor {
@@ -413,6 +415,7 @@ img {
 }
 
 .beneficio__icono {
+  fill: var(--blanco);
   width: 5rem;
 }
 
@@ -426,39 +429,103 @@ img {
   padding: 3rem 0;
 }
 
-.nosotros__grid {
+.nosotros__texto {
   display: grid;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  grid-template-rows: repeat(2, 1fr);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 50%;
+  margin-bottom: calc(var(--separacion) / 2);
 }
 
-@media (min-width: 992px) {
-  .nosotros__grid {
+.nosotros__texto:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .nosotros__texto {
+    background-size: 85%;
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--separacion);
   }
 }
 
-.nosotros__imagen {
-  display: flex;
-  justify-content: center;
+.nosotros__contenido {
+  grid-row: 2/3;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  overflow: hidden;
 }
 
-.nosotros__img {
-  width: 50rem;
+@media (min-width: 768px) {
+  .nosotros__contenido {
+    padding: 3rem;
+  }
 }
 
-.nosotros__textos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-}
 .nosotros__subtitulo {
   font-weight: lighter;
   text-align: left;
   color: var(--grisOscuro);
-  margin: 0;
+  margin: 1rem 0;
+}
+
+.nosotros__parrafo {
+  margin: 1rem auto;
+}
+
+.nosotros__btn:active {
+  border-color: var(--salmon);
+}
+
+@media (hover: hover) {
+  .nosotros__btn:hover {
+    border-color: var(--salmon);
+  }
+}
+
+@media (min-width: 768px) {
+  .nosotros__btn {
+    width: auto;
+  }
+}
+
+.nosotros__texto--mision {
+  background-image: url(../assets/img/casa.jpg);
+}
+
+@media (min-width: 768px) {
+  .nosotros__texto--mision {
+    background-position: center right;
+  }
+
+  .nosotros__texto--mision .nosotros__contenido {
+    grid-row: 2 / 3;
+    padding: 2rem 2rem 2rem 0;
+  }
+}
+
+.nosotros__texto--vision {
+  background-image: url(../assets/img/hero.jpg);
+}
+
+@media (min-width: 768px) {
+  .nosotros__texto--vision {
+    grid-template-rows: 1fr 3rem;
+    background-position: top left;
+  }
+
+  .nosotros__texto--vision .nosotros__contenido {
+    grid-row: auto;
+    grid-column: 2 / 3;
+    padding: 2rem 0 2rem 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .nosotros__texto--vision {
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
 
 /* PROYECTOS */
@@ -514,40 +581,22 @@ img {
 }
 
 .card__parrafo {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
   margin: 0 0 2rem;
+}
+
+.card__precio {
+  margin: 0 0 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--blanco);
 }
 
 .card__btn {
   width: 100%;
-}
-
-.personas {
-  padding: 3rem 0;
-}
-
-.personas__cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 25rem));
-  justify-content: center;
-  gap: 3rem;
-}
-
-.persona {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.persona__img {
-  width: 16rem;
-  height: 16rem;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.persona__titulo {
-  color: var(--grisOscuro);
 }
 
 /* NEWSLETTER */
@@ -581,7 +630,6 @@ img {
   .newsletter {
     background-position: center, 0rem -20rem;
     background-size: 100%, 90rem;
-  
   }
 }
 
@@ -620,9 +668,9 @@ img {
   background-color: var(--blanco);
 }
 
-.form__field--newsletter{
+.form__field--newsletter {
   border: none;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .form__btn--newsletter:active {
@@ -635,12 +683,12 @@ img {
   }
 }
 
-.form__spinner--newsletter .loader{
+.form__spinner--newsletter .loader {
   border: 5px solid var(--grisOscuro);
   border-bottom: var(--blanco);
 }
 
-.form__exito--newsletter{
+.form__exito--newsletter {
   color: green;
   background-color: unset;
 }
@@ -686,11 +734,10 @@ img {
   transition: 0.2s;
 }
 
-.nav__icono:active {
-  color: var(--grisOscuro);
+.nav__icono:active{
   background-color: var(--blanco);
+  color: var(--grisOscuro);
 }
-
 @media (hover: hover) {
   .nav__icono:hover {
     color: var(--grisOscuro);

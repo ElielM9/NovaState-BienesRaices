@@ -153,40 +153,28 @@
       </section>
       <section class="nosotros nosotros__contenedor" id="nosotros">
         <h2 class="nosotros__titulo">Sobre Nosotros</h2>
-        <div class="nosotros__grid">
-          <div class="nosotros__imagen">
-            <picture>
-              <source srcset="./assets/img/casa.avif" type="image/avif" />
-              <source srcset="./assets/img/casa.webp" type="image/webp" />
-              <img
-                class="nosotros__img"
-                loading="lazy"
-                width="500"
-                height="300"
-                src="./assets/img/casa.jpg"
-                alt="Img-Nosotros"
-              />
-            </picture>
+        <div class="nosotros__texto nosotros__texto--mision">
+          <div class="nosotros__contenido">
+            <h3 class="nosotros__subtitulo">Nuestra Misión</h3>
+            <p class="nosotros__parrafo">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
+              tenetur ex maxime itaque id non odit esse sapiente laudantium
+              corrupti. Quis non sed totam amet vel molestias adipisci eaque
+              accusantium.
+            </p>
+            <a href="#" class="nosotros__btn">Más información</a>
           </div>
-          <div class="nosotros__textos">
-            <div class="nosotros__texto">
-              <h3 class="nosotros__subtitulo">Nuestra Visión</h3>
-              <p class="nosotros__parrafo">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tempora tenetur ex maxime itaque id non odit esse sapiente
-                laudantium corrupti. Quis non sed totam amet vel molestias
-                adipisci eaque accusantium.
-              </p>
-            </div>
-            <div class="nosotros__texto">
-              <h3 class="nosotros__subtitulo">Nuestra Misión</h3>
-              <p class="nosotros__parrafo">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ex
-                ipsa voluptates ipsam similique tenetur neque officiis
-                exercitationem, delectus vel blanditiis consectetur, itaque
-                reiciendis nam optio, perferendis quibusdam quisquam possimus.
-              </p>
-            </div>
+        </div>
+        <div class="nosotros__texto nosotros__texto--vision">
+          <div class="nosotros__contenido">
+            <h3 class="nosotros__subtitulo">Nuestra Visión</h3>
+            <p class="nosotros__parrafo">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ex ipsa
+              voluptates ipsam similique tenetur neque officiis exercitationem,
+              delectus vel blanditiis consectetur, itaque reiciendis nam optio,
+              perferendis quibusdam quisquam possimus.
+            </p>
+            <a href="#" class="nosotros__btn">Más información</a>
           </div>
         </div>
       </section>
@@ -212,6 +200,7 @@
                 velit sapiente rem accusamus ducimus, harum exercitationem magni
                 amet quos beatae.
               </p>
+              <p class="card__precio">$1,200,000</p>
               <a
                 class="card__btn"
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -239,6 +228,7 @@
                 velit sapiente rem accusamus ducimus, harum exercitationem magni
                 amet quos beatae.
               </p>
+              <p class="card__precio">$1,200,000</p>
               <a
                 class="card__btn"
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -266,6 +256,7 @@
                 velit sapiente rem accusamus ducimus, harum exercitationem magni
                 amet quos beatae.
               </p>
+              <p class="card__precio">$1,200,000</p>
               <a
                 class="card__btn"
                 href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -274,6 +265,7 @@
               >
             </div>
           </div>
+         
         </div>
       </section>
       <section class="newsletter">
@@ -289,11 +281,11 @@
             <form id="formNewsletter" action="" class="form form--newsletter">
               <div class="form__campo">
                 <input
-                id="emailNews"
-                type="email"
-                name="email"
-                placeholder="Ingresa tu email"
-                class="form__field form__field--newsletter"
+                  id="emailNews"
+                  type="email"
+                  name="email"
+                  placeholder="Ingresa tu email"
+                  class="form__field form__field--newsletter"
                 />
               </div>
               <input
@@ -304,7 +296,10 @@
                 disabled
               />
 
-              <div id="spinnerNews" class="form__spinner form__spinner--newsletter">
+              <div
+                id="spinnerNews"
+                class="form__spinner form__spinner--newsletter"
+              >
                 <span class="loader"></span>
               </div>
             </form>
@@ -335,7 +330,7 @@
         </div>
       </div>
       <div class="footer__parrafo">
-        <p>Todos los derechos reservados Eliel M. 2022 &copy;</p>
+        <p>Todos los derechos reservados NovaState. 2022 &copy;</p>
       </div>
     </footer>
 
