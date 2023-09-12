@@ -433,7 +433,7 @@ img {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: top center;
   background-size: 100% 50%;
   margin-bottom: calc(var(--separacion) / 2);
 }
@@ -500,10 +500,15 @@ img {
   }
 
   .nosotros__texto--mision .nosotros__contenido {
-    grid-row: 2 / 3;
     padding: 2rem 2rem 2rem 0;
   }
 }
+
+@media(min-width: 992px) {
+    .nosotros__texto--mision{
+      background-position: bottom right;
+    }
+ }
 
 .nosotros__texto--vision {
   background-image: url(../assets/img/hero.jpg);
